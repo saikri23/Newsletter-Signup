@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
+require("dotenv").config();
 
 const app = express();
 
@@ -33,9 +34,10 @@ app.post("/",function(req,res){
 
     const url="https://us13.api.mailchimp.com/3.0/lists/c4565499d3";
 
+    
     const options ={
         method :"POST",
-        auth : "saikri:a9d844fbe1cf62c1263372d302bed0560-us13"
+        auth : "saikri:"+process.env.MAILAPI_KEY
     }
 
     const request = https.request(url,options,function(response){//store in to request to post the json datato Mailchip
@@ -65,6 +67,3 @@ app.listen(process.env.PORT || 3000,function(){
 
 
 
-//API Key : 9d844fbe1cf62c1263372d302bed0560-us13
-//URL :https://us6.api.mailchimp.com/3.0/lists/57afe96172
-//List Id: c4565499d3
